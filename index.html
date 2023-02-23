@@ -1,116 +1,263 @@
-<!DOCTYPE html> 
-<html>
-    <head>
-        <title style= "text-align: center;"> Honor / Warrior Squadron Live Tracker</title>
-        <style>
-            img {
-                position: absolute;
-			    top: 0;
-			    right: 0;
-
-            }
-            body {
-                color: whitesmoke;
-                font-family: Crimson Text, sans-serif;
-                background-image: url('backgorund.jpg');
+<!DOCTYPE html>
+<head>
+    <title>Squadron Live Tracker</title>
+    <style>
+                    body{
+                background-image: url('25101.jpg');
                 background-size: cover;
-                font-size: 40px;
                 
             }
-            table
-            {
-                margin: auto;
-                border-spacing: 10px;
-            }
-            h1{
-                    color: yellow;
-                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif;
-                    font-size: 40px;
+            table, th, td {
+        border: 1px solid black;
+    }
+      .tables {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .table {
+        width: 30%;
+        margin: 20px;
+        border: 1px solid black;
+        text-align: center;
+      }
+      .table.right {
+        margin-left: auto;
+        margin-right: 5;
+      }
+      .title {
+         text-align: center;
+            margin-top: 20px; /* adjust this value as needed */
+        color: black;
+        font-family:sans-serif;
+        font-size:2em;
+        margin-bottom:0;
+        }
+        .header {
+  font-size: 24px; /* adjust this value as needed */
+  padding: 10px;
+  color:#c00;
+  font-family:sans-serif;
+  font-size:2em;
+}
 
-                }
-        </style>
-
-
-    </head>
-    <body>
-        
-        <div style="position:relative">
-            <img src="trophy.png" style="position:absolute;top:0;right:0;z-index:-1;width:15%">
-            <img src="image.png" style="position:absolute;top:0;left:0;z-index:-1;width:15%">
-            <h1 style ="text-align:center;position:relative;z-index:1;">Honor/Warrior Squadron Live Tracker</h1>
-          </div>
-        <p id="mydata"></p>
-        <table id="myTable">
-            <thead>
-                <tr>
-                    <th>Honor Squadron</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <table id="myTable2">
-            <thead>
-                <tr>
-                    <th>Warrior Squadron</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-
-    <script>
-    
-
-  // Replace YOUR_SPREADSHEET_ID with the ID of your Google Sheet.
-  const spreadsheetId = "1l4VUQPxG5f0aKyP5-xDD6BXaM4wHPfxc4lPBJJWFri0";
-
-// Replace YOUR_RANGE with the range of cells you want to read from.
-const range = "J12:J14";
-
-// Replace YOUR_API_KEY with your API key or OAuth 2.0 client ID.
-const apiKey = "AIzaSyDY1ECLPkN-1CdMAaDFhwiSpd-SGqiMrAc";
-// Use the fetch() function to make a GET request to the Sheets API.
-fetch(
-  `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`
-)
-  .then((response) => response.json())
-  .then((data) => {
-    var values = data.values;
-				var tbody = document.querySelector('#myTable tbody');
-
-				for (var i = 0; i < values.length; i++) {
-					var row = tbody.insertRow(i);
-					for (var j = 0; j < values[i].length; j++) {
-						var cell = row.insertCell(j);
-						cell.innerHTML = values[i][j];
-                    }
-                }
-  });
-  fetch(
-  `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Warrior%20Squadron!I11:I13?key=${apiKey}`
-)
-  .then((response) => response.json())
-  .then((data) => {
-    var values = data.values;
-				var tbody = document.querySelector('#myTable2 tbody');
-
-				for (var i = 0; i < values.length; i++) {
-					var row = tbody.insertRow(i);
-					for (var j = 0; j < values[i].length; j++) {
-						var cell = row.insertCell(j);
-						cell.innerHTML = values[i][j];
-                    }
-                }
-  });
-  
-  
-  
-    </script>
+.title h1 {
+  margin: 0;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+    </style>
 
 
 
 
-    </body>
+</head>
+<body>
+    <div class="title">
+        <h1>Squadron Leaderboards</h1>
+      </div>
+      <img src="trophy.png" style="position:absolute;top:0;right:0;z-index:-1;width:6%">
+      <img src="image.png" style="position:absolute;top:0;left:0;z-index:-1;width:8%">
+      <div class="container">
+        <div class="header">Honor Squadron</div>
+        <div class="header">Warrior Squadron</div>
+        <div class="header">Outstanding Squadron</div>
+      </div> 
+        <div class="tables">
+            <table id="table1" class="table" >
+                <thead>
+                  <tr>
+                    <th class="headers">RANK</th>
+                    <th class="headers">SQUADRON</th>
+                    <th class="headers">POINTS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td id="cell1"></td>
+                    <td  id="cell4"></td>
+                  </tr>
+                  <tr>
+                    <td >2</td>
+                    <td id="cell2"></td>
+                    <td  id="cell5"></td>
+                  </tr>
+                  <tr>
+                    <td >3</td>
+                    <td id="cell3"></td>
+                    <td id="cell6"></td>
+                  </tr>
+                </tbody>
+                </table>
 
-</html>
+
+
+                <table id="table2" class="table" >
+                    <thead>
+                      <tr>
+                        <th class="headers">RANK</th>
+                        <th class="headers">SQUADRON</th>
+                        <th class="headers">POINTS</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td id="cell7"></td>
+                        <td  id="cell8"></td>
+                      </tr>
+                      <tr>
+                        <td >2</td>
+                        <td id="cell9"></td>
+                        <td  id="cell10"></td>
+                      </tr>
+                      <tr>
+                        <td >3</td>
+                        <td id="cell11"></td>
+                        <td id="cell12"></td>
+                      </tr>
+                    </tbody>
+                    </table>
+                    <table id="table3" class="table" >
+                        <thead>
+                          <tr>
+                            <th class="headers">RANK</th>
+                            <th class="headers">SQUADRON</th>
+                            <th class="headers">TOTAL POINTS</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td id="cell13"></td>
+                            <td  id="cell14"></td>
+                          </tr>
+                          <tr>
+                            <td >2</td>
+                            <td id="cell15"></td>
+                            <td  id="cell16"></td>
+                          </tr>
+                          <tr>
+                            <td >3</td>
+                            <td id="cell17"></td>
+                            <td id="cell18"></td>
+                          </tr>
+                        </tbody>
+                        </table>
+        </div>
+        <script>
+            const table = document.querySelector('table');
+            const cell1 = document.getElementById('cell1');
+            const cell2 = document.getElementById('cell2');
+            const cell3 = document.getElementById('cell3');
+            const cell4 = document.getElementById('cell4');
+            const cell5 = document.getElementById('cell5');
+            const cell6 = document.getElementById('cell6');
+            const cell7 = document.getElementById('cell7');
+            const cell8 = document.getElementById('cell8');
+            const cell9 = document.getElementById('cell9');
+            const cell10 = document.getElementById('cell10');
+            const cell11= document.getElementById('cell11');
+            const cell12= document.getElementById('cell12');
+            const cell13 = document.getElementById('cell13');
+            const cell14= document.getElementById('cell14');
+            const cell15= document.getElementById('cell15');
+            const cell16 = document.getElementById('cell16');
+            const cell17= document.getElementById('cell17');
+            const cell18= document.getElementById('cell18');
+
+            // Replace YOUR_SPREADSHEET_ID with the ID of your Google Sheet.
+            const spreadsheetId = "1l4VUQPxG5f0aKyP5-xDD6BXaM4wHPfxc4lPBJJWFri0";
+          
+          // Replace YOUR_RANGE with the range of cells you want to read from.
+          const range = "J12:J14";
+          
+          // Replace YOUR_API_KEY with your API key or OAuth 2.0 client ID.
+          const apiKey = "AIzaSyDY1ECLPkN-1CdMAaDFhwiSpd-SGqiMrAc";
+          // Use the fetch() function to make a GET request to the Sheets API.
+          fetch(
+            `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`
+          )
+            .then((response) => response.json())
+            .then((data) => {
+                var values = data.values;
+                cell1.textContent = values[0];
+
+                cell2.textContent = values[1];
+                cell3.textContent = values[2];
+
+
+            });
+            fetch(
+            `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/K12:K17?key=${apiKey}`
+          )
+            .then((response) => response.json())
+            .then((data) => {
+                var values = data.values;
+                cell4.textContent = values[0];
+
+                cell5.textContent = values[1];
+                cell6.textContent = values[2];
+
+
+            });
+            fetch(
+                      `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Warrior%20Squadron!I11:I13?key=${apiKey}`
+                  )
+                      .then((response) => response.json())
+                      .then((data) => {
+                      var values = data.values;
+                      cell7.textContent = values[0];
+
+                      cell9.textContent = values[1];
+                      cell11.textContent = values[2];
+                      });
+
+                      fetch(
+                      `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Warrior%20Squadron!J11:J13?key=${apiKey}`
+                  )
+                      .then((response) => response.json())
+                      .then((data) => {
+                      var values = data.values;
+                      cell8.textContent = values[0];
+
+                      cell10.textContent = values[1];
+                      cell12.textContent = values[2];
+                      });
+                      fetch(
+                      `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Outstanding%20Squadron!A3:A5?key=${apiKey}`
+                  )
+                      .then((response) => response.json())
+                      .then((data) => {
+                      var values = data.values;
+                      cell13.textContent = values[0];
+
+                      cell15.textContent = values[1];
+                      cell17.textContent = values[2];
+                      });
+
+                      fetch(
+                      `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Outstanding%20Squadron!D3:D5?key=${apiKey}`
+                  )
+                      .then((response) => response.json())
+                      .then((data) => {
+                      var values = data.values;
+                      cell14.textContent = values[0];
+
+                      cell16.textContent = values[1];
+                      cell18.textContent = values[2];
+                      });
+                      
+                      
+            </script>
+
+
+
+
+
+</body>
